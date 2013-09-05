@@ -1,0 +1,13 @@
+
+在Asp.net中利用MySQL数据库进行验证
+
+http://database.51cto.com/art/201006/203353.htm
+
+C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\Config
+
+autogenerateschema="true" 
+
+
+Error “The password provided is invalid. Please enter a valid password value.”
+
+http://informationideas.com/news/2008/02/04/net-error-the-password-provided-is-invalid-please-enter-a-valid-password-value/

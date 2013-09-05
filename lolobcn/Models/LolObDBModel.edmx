@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="LolObDBModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1">
+        <EntityContainer Name="LolObDBModelTargetContainer" >
+          <EntitySet Name="Matchinfo" EntityType="LolObDBModel.Store.Matchinfo" />
+        </EntityContainer>
+        <EntityType Name="Matchinfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" Nullable="false" />
+          <Property Name="ServerId" Type="uint" Nullable="false" />
+          <Property Name="ServerName" Type="char" Nullable="false" MaxLength="15" />
+          <Property Name="ServerIp" Type="char" Nullable="false" MaxLength="31" />
+          <Property Name="GameId" Type="uint" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LolObDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="LolObDBModelEntities" annotation:LazyLoadingEnabled="true">
+           <EntitySet Name="Matchinfo" EntityType="LolObDBModel.Matchinfo" />
+        </EntityContainer>
+        <EntityType Name="Matchinfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ServerId" Type="Int32" Nullable="false" />
+          <Property Name="ServerName" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="ServerIp" Type="String" Nullable="false" MaxLength="31" />
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="LolObDBModel" />
+        <Alias Key="Target" Value="LolObDBModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="LolObDBModelEntities" StorageEntityContainer="LolObDBModelTargetContainer">
+
+          <EntitySetMapping Name="Matchinfo">
+            <EntityTypeMapping TypeName="IsTypeOf(LolObDBModel.Matchinfo)">
+              <MappingFragment StoreEntitySet="Matchinfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServerId" ColumnName="ServerId" />
+                <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+                <ScalarProperty Name="ServerIp" ColumnName="ServerIp" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+
+            <!--
+            <EntityTypeMapping TypeName="LolObDBModel.SalariedMatchinfo">
+              <MappingFragment StoreEntitySet="SalariedMatchinfo">
+                <ScalarProperty Name="Id" ColumnName="MatchinfoId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            -->
+
+          </EntitySetMapping>
+
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="LolObDBModel" >
+        <EntityTypeShape EntityType="LolObDBModel.Matchinfo" Width="1.5" PointX="0.75" PointY="0.75" Height="1.7908333333333331" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
