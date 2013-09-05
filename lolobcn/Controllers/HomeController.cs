@@ -50,6 +50,8 @@ namespace lolobcn.Controllers
                 //list = dt.AsEnumerable().ToList();
                 var items = dt.ToList<Depends.MatchinfoTable>();
 
+                //List<Depends.MatchinfoTable> list = new List<Depends.MatchinfoTable>(dt.Select());
+
                 conn.Close();
             }
             //*/
