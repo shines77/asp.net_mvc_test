@@ -18,12 +18,12 @@ using System.Web.UI.WebControls;
 
 namespace lolobcn.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ViewAgentController
     {
         //public GridView GridView1 = new GridView();
 
-        private lolobcn.Models.LolObDBModelEntities _db = new Models.LolObDBModelEntities();
-        //private lolobcn.Depends.LolObDBModels _db = new Depends.LolObDBModels();
+        //private lolobcn.Models.LolObDBModelEntities _db = new Models.LolObDBModelEntities();
+        private lolobcn.Depends.LolObDBModels _db = new Depends.LolObDBModels();
 
         public ActionResult Index()
         {
@@ -55,13 +55,17 @@ namespace lolobcn.Controllers
                 conn.Close();
             }
             //*/
-            /*
-            string strError;
-            DataTable dt = _db.GetDataTable("select * from matchinfo", out strError);
-            var list = dt.ToList<Depends.MatchinfoTable>();
-            return (list != null) ? View(list) : View();
+            ///*
+            //string strError;
+            //DataTable dt = _db.GetDataTable("select * from matchinfo", out strError);
+            //var list = dt.ToList<Depends.MatchinfoTable>();
+            //var list = _db.GetDataToList<MatchinfoTable>("select * from matchinfo");
+            //return (list != null) ? View(list) : View();
+            //
+            //return _db.GetView<MatchinfoTable>("select * from matchinfo", this);
+            return _db.GetView<MatchinfoTable>(this);
             //*/
-            return View(_db.Matchinfo.ToList());
+            //return View(_db.Matchinfo.ToList());
         }
 
         public ActionResult About()

@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<lolobcn.Models.LogonModel>" %>
 
-<asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Logon
-</asp:Content>
+<asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">Logon</asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Logon</h2>

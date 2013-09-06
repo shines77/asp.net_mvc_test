@@ -9,6 +9,7 @@ using System.Data.Metadata.Edm;
 using System.ComponentModel;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Web.Mvc;
 
 namespace lolobcn.Depends
 {
@@ -54,6 +55,12 @@ namespace lolobcn.Depends
     /// </summary>
     public partial class MatchinfoTable : EntityObject
     {
+        /// <summary>
+        /// 在这里定义MatchinfoTable对象所对应的数据库查询sql语句
+        /// </summary>
+        public static string strSQL = "select id, serverId, serverName, serverIp, gameId from matchinfo";
+        //public static string strSQL = "select * from matchinfo";
+
         #region 工厂方法
 
         /// <summary>

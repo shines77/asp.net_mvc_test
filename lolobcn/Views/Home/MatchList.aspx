@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="MatchList" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    MatchList
-</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">MatchList</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+<h2>MatchList</h2>
 
 <table>
     <tr>
@@ -49,14 +49,14 @@
     <% } %>
 </table>
 
-<h2>MatchList</h2>
-
+<!--
 <form ID="Form1" action="#" method="get" runat="server">
     <div>
         <asp:GridView ID="PlaceHolder1" runat="server">
         </asp:GridView>
     </div>
 </form>
+-->
 
 </asp:Content>
 

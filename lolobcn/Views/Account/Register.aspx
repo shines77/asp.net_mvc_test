@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<lolobcn.Models.RegisterModel>" %>
 
-<asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Register
-</asp:Content>
+<asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">Register</asp:Content>
 
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Create a New Account</h2>

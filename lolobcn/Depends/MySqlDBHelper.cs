@@ -4,9 +4,14 @@ using System.Linq;
 using System.Web;
 
 using System.Data;
+using System.Web.Mvc;
 using System.Diagnostics;
 using System.Configuration;
+using System.Reflection;
+using System.Data.Objects.DataClasses;
 using MySql.Data.MySqlClient;
+
+using lolobcn.Controllers;
 
 namespace lolobcn.Depends
 {
@@ -87,6 +92,39 @@ namespace lolobcn.Depends
                     connectionString = objConn.ToString();
             }
             return connectionString;
+        }
+
+        public ViewResult GetView<T>(ViewAgentController controller) where T : new()
+        {
+            T obj = new T();
+            FieldInfo fi = typeof(T).GetField("strSQL");
+            // 为了利用反射获取返回Field值，必须指定BindingFlags.Instance 或 BindingFlags.Static
+            if (fi != null && fi.IsStatic && fi.IsPublic)
+            {
+                string strSQL = (string)fi.GetValue(obj);
+                //string strSQL = "select * from matchinfo";
+                string strError;
+                DataTable dt = GetDataTable(strSQL, out strError);
+                var list = dt.ToList<T>();
+                return (list != null) ? controller.GetView(list) : controller.GetView();
+            }
+            return controller.GetView();
+        }
+
+        public ViewResult GetView<T>(string strSQL, ViewAgentController controller) where T : new()
+        {
+            string strError;
+            DataTable dt = GetDataTable(strSQL, out strError);
+            var list = dt.ToList<T>();
+            return (list != null) ? controller.GetView(list) : controller.GetView();
+        }
+
+        public IList<T> GetDataToList<T>(string strSQL) where T : new()
+        {
+            string strError;
+            DataTable dt = GetDataTable(strSQL, out strError);
+            var list = dt.ToList<T>();
+            return list;
         }
 
         public DataTable GetDataTable(string strSQL, out string strError)
