@@ -15,15 +15,22 @@ using lolobcn.Controllers;
 
 namespace lolobcn.Depends
 {
+    /// <summary>
+    /// 
+    /// MySqlDBHelper: 连接mysql的帮助类, 协助完成连接mysql的各种操作
+    /// 
+    /// 注: Partial 表示局部类型, 局部类型是一个纯语言层的编译处理，不影响任何执行机制,
+    ///     它允许我们将一个类、结构或接口分成几个部分，分别实现在几个不同的.cs文件中.
+    /// </summary>
     public partial class MySqlDBHelper
     {
-        private string dbConnString = "";
-        private string dbConnStringName = "";
+        protected string dbConnString = "";
+        protected string dbConnStringName = "";
 
         public enum ConnectionMode
         {
-            BY_STRING = 0,
-            BY_NAME
+            BY_NAME = 0,
+            BY_STRING,
         };
 
         public MySqlDBHelper()
@@ -40,12 +47,21 @@ namespace lolobcn.Depends
             InitConnStringInfo(connString, connMode);
         }
 
+        public string ConnString
+        {
+            get { return dbConnString; }
+            set
+            {
+                InitConnStringInfo(value, ConnectionMode.BY_NAME);
+            }
+        }
+
         public void SetConnStringInfo(string connString, ConnectionMode connMode = ConnectionMode.BY_NAME)
         {
             InitConnStringInfo(connString, connMode);
         }
 
-        private void InitConnStringInfo(string connString, ConnectionMode connMode = ConnectionMode.BY_NAME)
+        protected void InitConnStringInfo(string connString, ConnectionMode connMode = ConnectionMode.BY_NAME)
         {
             if (connString == null)
                 return;
@@ -82,7 +98,7 @@ namespace lolobcn.Depends
             }
         }
 
-        private string GetSystemConfigConnectionStrings(string connectionStringName)
+        protected string GetSystemConfigConnectionStrings(string connectionStringName)
         {
             string connectionString = null;
             if (!string.IsNullOrEmpty(connectionStringName))
@@ -92,39 +108,6 @@ namespace lolobcn.Depends
                     connectionString = objConn.ToString();
             }
             return connectionString;
-        }
-
-        public ViewResult GetView<T>(ViewAgentController controller) where T : new()
-        {
-            T obj = new T();
-            FieldInfo fi = typeof(T).GetField("strSQL");
-            // 为了利用反射获取返回Field值，必须指定BindingFlags.Instance 或 BindingFlags.Static
-            if (fi != null && fi.IsStatic && fi.IsPublic)
-            {
-                string strSQL = (string)fi.GetValue(obj);
-                //string strSQL = "select * from matchinfo";
-                string strError;
-                DataTable dt = GetDataTable(strSQL, out strError);
-                var list = dt.ToList<T>();
-                return (list != null) ? controller.GetView(list) : controller.GetView();
-            }
-            return controller.GetView();
-        }
-
-        public ViewResult GetView<T>(string strSQL, ViewAgentController controller) where T : new()
-        {
-            string strError;
-            DataTable dt = GetDataTable(strSQL, out strError);
-            var list = dt.ToList<T>();
-            return (list != null) ? controller.GetView(list) : controller.GetView();
-        }
-
-        public IList<T> GetDataToList<T>(string strSQL) where T : new()
-        {
-            string strError;
-            DataTable dt = GetDataTable(strSQL, out strError);
-            var list = dt.ToList<T>();
-            return list;
         }
 
         public DataTable GetDataTable(string strSQL, out string strError)
@@ -183,6 +166,39 @@ namespace lolobcn.Depends
                 Trace.WriteLine(ex);
             }
             return ds;
+        }
+
+        public IList<T> GetDataToList<T>(string strSQL) where T : new()
+        {
+            string strError;
+            DataTable dt = GetDataTable(strSQL, out strError);
+            var list = dt.ToList<T>();
+            return list;
+        }
+
+        public ViewResult GetView<T>(string strSQL, ViewAgentController controller) where T : new()
+        {
+            string strError;
+            DataTable dt = GetDataTable(strSQL, out strError);
+            var list = dt.ToList<T>();
+            return (list != null) ? controller.GetView(list) : controller.GetView();
+        }
+
+        public ViewResult GetView<T>(ViewAgentController controller) where T : new()
+        {
+            T obj = new T();
+            FieldInfo fi = typeof(T).GetField("strSQL");
+            // 为了利用反射获取返回Field值，必须指定BindingFlags.Instance 或 BindingFlags.Static
+            if (fi != null && fi.IsStatic && fi.IsPublic)
+            {
+                string strSQL = (string)fi.GetValue(obj);
+                //string strSQL = "select * from matchinfo";
+                string strError;
+                DataTable dt = GetDataTable(strSQL, out strError);
+                var list = dt.ToList<T>();
+                return (list != null) ? controller.GetView(list) : controller.GetView();
+            }
+            return controller.GetView();
         }
     }
 }

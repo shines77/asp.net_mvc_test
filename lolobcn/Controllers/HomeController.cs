@@ -8,7 +8,7 @@ using System.Data;
 using System.Text;
 using System.Configuration;
 using System.Diagnostics;
-using lolobcn.Depends;
+using lolobcn.Models;
 using System.Reflection;
 
 //using System.Data.DataSetExtensions;
@@ -22,8 +22,9 @@ namespace lolobcn.Controllers
     {
         //public GridView GridView1 = new GridView();
 
-        //private lolobcn.Models.LolObDBModelEntities _db = new Models.LolObDBModelEntities();
-        private lolobcn.Depends.LolObDBModels _db = new Depends.LolObDBModels();
+        private lolobcn.Models.LolObDBModelEntities _db2 = new Models.LolObDBModelEntities();
+        //private lolobcn.Models.LolObDBModels _db = new Models.LolObDBModels();
+        private lolobcn.Models.LolObDBModels2Ex _db = new Models.LolObDBModels2Ex();
 
         public ActionResult Index()
         {
@@ -63,14 +64,17 @@ namespace lolobcn.Controllers
             //return (list != null) ? View(list) : View();
             //
             //return _db.GetView<MatchinfoTable>("select * from matchinfo", this);
-            return _db.GetView<MatchinfoTable>(this);
+            return _db.GetView<MatchinfoTable2>(this);
             //*/
             //return View(_db.Matchinfo.ToList());
         }
 
         public ActionResult About()
         {
-            return View();
+            //viewResult = View(_db2.Matchinfo.ToList());
+            return _db.GetView<MatchinfoTable2>(this);
+            //return View(_db2.Matchinfo.ToList());
+            //return View();
         }
     }
 }

@@ -10,9 +10,12 @@ using System.ComponentModel;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Web.Mvc;
+using lolobcn.Depends;
 
-namespace lolobcn.Depends
+namespace lolobcn.Models
 {
+    #region 上下文
+
     public partial class LolObDBModels : MySqlDBHelper
     {
         //private static MySqlDBHelper dbHelper = new MySqlDBHelper("name=LolObDBModelEntities");
@@ -22,7 +25,7 @@ namespace lolobcn.Depends
         #region 构造函数
 
         /// <summary>
-        /// 请使用应用程序配置文件的“LolObDBModels”部分中的连接字符串初始化新 LolObDBModels 对象。
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModels 对象。
         /// </summary>
         public LolObDBModels() : base("name=LocalMySqlServices")
         {
@@ -30,7 +33,7 @@ namespace lolobcn.Depends
         }
 
         /// <summary>
-        /// 请使用应用程序配置文件的“LolObDBModels”部分中的连接字符串初始化新 LolObDBModels 对象。
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModels 对象。
         /// </summary>
         public LolObDBModels(string connStringName) : base(connStringName)
         {
@@ -38,7 +41,7 @@ namespace lolobcn.Depends
         }
 
         /// <summary>
-        /// 请使用应用程序配置文件的“LolObDBModels”部分中的连接字符串初始化新 LolObDBModels 对象。
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModels 对象。
         /// </summary>
         public LolObDBModels(string connString, ConnectionMode connMode) : base(connString, connMode)
         {
@@ -48,6 +51,43 @@ namespace lolobcn.Depends
         #endregion
     }
 
+    public partial class LolObDBModelsEx : MySqlDBHelperEx
+    {
+        //private static MySqlDBHelper dbHelper = new MySqlDBHelper("name=LolObDBModelEntities");
+        //private static MySqlDBHelper dbHelper = new MySqlDBHelper("server=localhost; port=3306; database=lolobcn_net; uid=root; pwd=gxh201100;",
+        //                                                            MySqlDBHelper.ConnectionMode.BY_STRING);
+
+        #region 构造函数
+
+        /// <summary>
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModelsEx 对象。
+        /// </summary>
+        public LolObDBModelsEx() : base("name=LocalMySqlServices")
+        {
+            //
+        }
+
+        /// <summary>
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModelsEx 对象。
+        /// </summary>
+        public LolObDBModelsEx(string connStringName) : base(connStringName)
+        {
+            //
+        }
+
+        /// <summary>
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModelsEx 对象。
+        /// </summary>
+        public LolObDBModelsEx(string connString, ConnectionMode connMode) : base(connString, connMode)
+        {
+            //
+        }
+
+        #endregion
+    }
+
+    #endregion
+
     #region 实体
 
     /// <summary>
@@ -55,11 +95,15 @@ namespace lolobcn.Depends
     /// </summary>
     public partial class MatchinfoTable : EntityObject
     {
+        #region 数据库连接信息
+
         /// <summary>
         /// 在这里定义MatchinfoTable对象所对应的数据库查询sql语句
         /// </summary>
         public static string strSQL = "select id, serverId, serverName, serverIp, gameId from matchinfo";
         //public static string strSQL = "select * from matchinfo";
+
+        #endregion
 
         #region 工厂方法
 

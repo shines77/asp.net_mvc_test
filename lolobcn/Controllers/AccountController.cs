@@ -12,6 +12,11 @@ namespace lolobcn.Controllers
     public class AccountController : Controller
     {
 
+        public ActionResult Index()
+        {
+            return RedirectToAction("Logon", "Account");
+        }
+
         //
         // GET: /Account/Logon
 

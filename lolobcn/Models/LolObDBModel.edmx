@@ -12,11 +12,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="uint" Nullable="false" />
-          <Property Name="ServerId" Type="uint" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ServerId" Type="int" Nullable="false" />
           <Property Name="ServerName" Type="char" Nullable="false" MaxLength="15" />
           <Property Name="ServerIp" Type="char" Nullable="false" MaxLength="31" />
-          <Property Name="GameId" Type="uint" Nullable="false" />
+          <Property Name="GameId" Type="int" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:StorageModels>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+//using System.Data.DataSetExtensions;
 using System.Reflection;
 using System.Diagnostics;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace lolobcn.Depends
     ///    var items = dt.ToList<Item>(mappings);
     ///    
     /// </summary>
-    public static class DataTableExtensions
+    public static partial class DataTableExtensionsEx
     {
         public static IList<T> ToList<T>(this DataTable table) where T : new()
         {
