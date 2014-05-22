@@ -63,7 +63,7 @@ namespace lolobcn.Models
     /// <summary>
     /// 没有元数据文档可用。
     /// </summary>
-    public partial class LolObDBModels2Ex : MySqlDBHelperEx
+    public partial class LolObDBModelsEx2 : MySqlDBHelperEx
     {
         //private static MySqlDBHelper dbHelper = new MySqlDBHelper("name=LocalMySqlServices");
         //private static MySqlDBHelper dbHelper = new MySqlDBHelper("server=localhost; port=3306; database=lolobcn_net; uid=root; pwd=gxh201100;",
@@ -72,27 +72,27 @@ namespace lolobcn.Models
         #region 构造函数
 
         /// <summary>
-        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModels2Ex 对象。
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModelsEx2 对象。
         /// </summary>
-        public LolObDBModels2Ex()
+        public LolObDBModelsEx2()
             : base("name=LocalMySqlServices")
         {
             //
         }
 
         /// <summary>
-        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModels2Ex 对象。
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModelsEx2 对象。
         /// </summary>
-        public LolObDBModels2Ex(string connStringName)
+        public LolObDBModelsEx2(string connStringName)
             : base(connStringName)
         {
             //
         }
 
         /// <summary>
-        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModels2Ex 对象。
+        /// 请使用应用程序配置文件的“LocalMySqlServices”部分中的连接字符串初始化新 LolObDBModelsEx2 对象。
         /// </summary>
-        public LolObDBModels2Ex(string connString, ConnectionMode connMode)
+        public LolObDBModelsEx2(string connString, ConnectionMode connMode)
             : base(connString, connMode)
         {
             //

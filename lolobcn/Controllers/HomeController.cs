@@ -24,7 +24,7 @@ namespace lolobcn.Controllers
 
         private lolobcn.Models.LolObDBModelEntities _db2 = new Models.LolObDBModelEntities();
         //private lolobcn.Models.LolObDBModels _db = new Models.LolObDBModels();
-        private lolobcn.Models.LolObDBModels2Ex _db = new Models.LolObDBModels2Ex();
+        private lolobcn.Models.LolObDBModelsEx2 _db = new Models.LolObDBModelsEx2();
 
         public ActionResult Index()
         {

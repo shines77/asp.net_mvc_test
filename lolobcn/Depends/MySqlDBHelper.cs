@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using System.IO;
 using System.Data;
+using System.Text;
 using System.Web.Mvc;
 using System.Diagnostics;
 using System.Configuration;
@@ -199,6 +201,46 @@ namespace lolobcn.Depends
                 return (list != null) ? controller.GetView(list) : controller.GetView();
             }
             return controller.GetView();
+        }
+
+        /**
+         * Throws a new exception with a more informative error message.
+         *
+         * @param cause
+         *            The original exception that will be chained to the new
+         *            exception when it's rethrown.
+         *
+         * @param sql
+         *            The query that was executing when the exception happened.
+         *
+         * @param paramLists
+         *            The query replacement parameters; <code>null</code> is a valid
+         *            value to pass in.
+         *
+         * @throw MySqlException
+         *             if a database access error occurs
+         */
+        protected void ReThrow(MySqlExceptionEx cause, string sql, params object[] paramLists)
+        {
+            string causeMessage = cause.Message;
+            if (causeMessage == null) {
+                causeMessage = "";
+            }
+            StringBuilder msg = new StringBuilder(causeMessage);
+
+            msg.Append(" Query: ");
+            msg.Append(sql);
+            msg.Append(" Parameters: ");
+
+            if (paramLists == null) {
+                msg.Append("[]");
+            } else {
+                msg.Append(paramLists);
+            }
+
+            MySqlExceptionEx ex = new MySqlExceptionEx(msg.ToString(), cause.ErrorCode);
+
+            throw ex;
         }
     }
 }

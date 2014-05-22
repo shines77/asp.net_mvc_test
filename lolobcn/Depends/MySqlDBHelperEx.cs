@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Diagnostics;
 using System.Configuration;
 using System.Reflection;
+using System.Data.SqlClient;
 using System.Data.Objects.DataClasses;
 using System.Threading;
 using MySql.Data.MySqlClient;
@@ -59,7 +60,7 @@ namespace lolobcn.Depends
                     return (sqlConn.State == ConnectionState.Open);
                 }
 
-                // 如果mysql还在处理数据中, 等待一下直到处于open或close状态为止
+                // 如果mysql还在处理数据中, 等待一下直到处于open或close状态为止, 事实上可能这些状态并未实现, 为将来的版本准备
                 while (state != ConnectionState.Broken
                     && state != ConnectionState.Closed && state != ConnectionState.Open)
                 {
@@ -111,7 +112,7 @@ namespace lolobcn.Depends
                         Close();
                 }
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
                 strError = ex.Message;
                 Trace.WriteLine(ex);
@@ -141,7 +142,7 @@ namespace lolobcn.Depends
                         Close();
                 }
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
                 strError = ex.Message;
                 Trace.WriteLine(ex);

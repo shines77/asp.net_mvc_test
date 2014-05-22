@@ -82,6 +82,7 @@
     <Compile Include="Depends\DataTableExtensions.cs" />
     <Compile Include="Depends\MySqlDBHelper.cs" />
     <Compile Include="Depends\MySqlDBHelperEx.cs" />
+    <Compile Include="Depends\MySqlExceptionEx.cs" />
     <Compile Include="Models\LolObDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
